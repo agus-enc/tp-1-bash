@@ -13,7 +13,7 @@ if [ "$1" == "-d" ]; then
         fi
 
         # Rescata consolidar.sh antes de eliminar todo el entorno
-        mv EPNro1/consolidar.sh $(pwd)/ 2>/dev/null
+        mv EPNro1/consolidar.sh "$(pwd)"/ 2>/dev/null
         rm -r ./EPNro1 2>/dev/null
         exit 0
 fi
@@ -58,6 +58,7 @@ do
            if [ -f "$archivo" ]; then
               echo "Mostrando las primeras 10 mejores notas"
               sort -n -k4 "$archivo" | head
+            fi
         ;;
 
 	    5)  echo "Ingresar padron";;
