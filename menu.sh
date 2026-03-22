@@ -4,6 +4,20 @@
 FILENAME="archivo"
 export FILENAME
 
+# Si el script se ejecuta con el flag -d, busca y mata el proceso por nombre
+if [ "$1" == "-d" ]; then
+    if pgrep -f "consolidar.sh" > /dev/null; then
+            pkill -f "consolidar.sh" && echo "Proceso consolidar terminado."
+        else
+            echo "El proceso consolidar no está corriendo."
+        fi
+
+        # Rescata consolidar.sh antes de eliminar todo el entorno
+        mv EPNro1/consolidar.sh $(pwd)/ 2>/dev/null
+        rm -r ./EPNro1 2>/dev/null
+        exit 0
+fi
+
 echo "Bienvenido al menu"
 
 #Crea un array con los nombres de las opciones
