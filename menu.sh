@@ -22,9 +22,14 @@ do
         1)  mkdir -p EPNro1/{entrada,salida,procesado} && mv consolidar.sh EPNro1/. && touch EPNro1/salida/$FILENAME.txt &&
             echo "Entorno creado exitosamente";;
 
-        # Ejecuta consolidar.sh en background
-        2)  ./EPNro1/consolidar.sh & 
-            echo "Corriendo proceso en background";;
+        # Ejecuta consolidar.sh en background, chequeando si existe el proceso antes.
+        2)  if pgrep -f "consolidar.sh"; then
+                echo "El proceso ya está corriendo. No se iniciará una nueva instancia."
+            else
+                # Con las redirecciones nos aseguramos que no aparezca el archivo nohup.out
+                nohup ./EPNro1/consolidar.sh > /dev/null 2>&1 & 
+                echo "Corriendo proceso en background"
+            fi;;
 
         3)  archivo="$HOME/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
