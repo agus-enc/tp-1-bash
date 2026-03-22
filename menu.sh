@@ -26,7 +26,14 @@ do
         2)  ./EPNro1/consolidar.sh & 
             echo "Corriendo proceso en background";;
 
-        3)  echo "Alumnos";;
+        3)  archvo="$HOME/EPNro1/salida/$FILENAME.txt"
+           if [ -f "$archivo" ]; then
+              echo "Mostrando listado de alumnos por padron:"
+              sort -n -k1 "$archivo"
+           else 
+              echo "No se encontraron archivos"
+            fi
+        ;;
 	
 	    4)  echo "mejores notas";;
 
