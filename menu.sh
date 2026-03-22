@@ -26,7 +26,7 @@ do
         2)  ./EPNro1/consolidar.sh & 
             echo "Corriendo proceso en background";;
 
-        3)  archvo="$HOME/EPNro1/salida/$FILENAME.txt"
+        3)  archivo="$HOME/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
               echo "Mostrando listado de alumnos por padron:"
               sort -n -k1 "$archivo"
@@ -35,7 +35,11 @@ do
             fi
         ;;
 	
-	    4)  echo "mejores notas";;
+	    4) archivo="$HOME/EPNro1/salida/$FILENAME.txt"
+           if [ -f "$archivo" ]; then
+              echo "Mostrando las primeras 10 mejores notas"
+              sort -n -k4 "$archivo" | head
+        ;;
 
 	    5)  echo "Ingresar padron";;
 
