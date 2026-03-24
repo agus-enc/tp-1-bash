@@ -63,7 +63,12 @@ do
             fi
         ;;
 
-	    5)  echo "Ingresar padron";;
+	    5) archivo="$HOME/EPNro1/salida/$FILENAME.txt"
+            if [ -f "$archivo" ]; then
+                read -p "Ingrese numero de padron: " padron
+                grep "^$padron " "$archivo" || echo "Padron no encontrado"
+            fi
+        ;;
 
 	    6)  echo "Chau chau"
             exit;;
