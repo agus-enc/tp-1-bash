@@ -12,8 +12,8 @@ if [ "$1" == "-d" ]; then
             echo "No hay procesos corriendo en background."
         fi
 
-        # Rescata consolidar.sh antes de eliminar todo el entorno.
-        mv EPNro1/consolidar.sh "$(pwd)"/ 2>/dev/null
+        # Rescata consolidar.sh y los archivos de texto antes de eliminar todo el entorno.
+        mv EPNro1/consolidar.sh EPNro1/entrada/*.txt "$(pwd)"/ 2>/dev/null
         rm -r ./EPNro1 2>/dev/null
         exit 0
 fi
@@ -21,7 +21,7 @@ fi
 echo "Bienvenido al Menu"
 
 #Crea un array con los nombres de las opciones.
-opciones=( "Crear Entorno" "Correr Proceso" "Mostrar listado de alumnos ordenado por padrón." "Mostrar las 10 mejores notasdel listado" "Buscar Alumno" "Salir" )
+opciones=( "Crear Entorno" "Correr Proceso" "Mostrar listado de alumnos ordenado por padrón" "Mostrar las 10 mejores notas del listado" "Buscar Alumno" "Salir" )
 # PS3 es la variable predeterminda para promptear al usuario cuando usas select.
 PS3="Elija una de las opciones: "
 
@@ -34,7 +34,7 @@ do
 
         # Crea las carpetas pedidas, mueve consolidar.sh a EPNro1, mueve los archivos de prueba a entrada y crea el archivo donde van a parar los textos procesados
         1)  mkdir -p EPNro1/{entrada,salida,procesado} &&
-            mv consolidar.sh EPNro1/. && mv test1.txt test2.txt EPNro1/entrada/
+            mv consolidar.sh EPNro1/. && mv *.txt EPNro1/entrada/
             touch EPNro1/salida/$FILENAME.txt &&
             echo "Entorno creado exitosamente";;
 
@@ -47,7 +47,7 @@ do
                 echo "Corriendo proceso en background"
             fi;;
 
-        3)  archivo="$HOME/EPNro1/salida/$FILENAME.txt"
+        3)  archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
               echo "Mostrando listado de alumnos por padron:"
               sort -n -k1 "$archivo"
@@ -56,14 +56,14 @@ do
             fi
         ;;
 	
-	    4) archivo="$HOME/EPNro1/salida/$FILENAME.txt"
+	    4) archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
               echo "Mostrando las primeras 10 mejores notas"
               sort -n -k4 "$archivo" | head
             fi
         ;;
 
-	    5) archivo="$HOME/EPNro1/salida/$FILENAME.txt"
+	    5) archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
             if [ -f "$archivo" ]; then
                 read -p "Ingrese numero de padron: " padron
                 grep "^$padron " "$archivo" || echo "Padron no encontrado"
