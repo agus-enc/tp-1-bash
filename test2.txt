@@ -1,0 +1,6 @@
+527352 Jorge Perez jperez@fi.uba.ar 6
+798945 Patricio Jimenez pjimenez@fi.uba.ar 9
+760341 Carlos Samid csamid@fi.uba.ar 5
+885425 Federico Sola fsola@fi.uba.ar 7
+754223 Juan Petri jpetri@fi.uba.ar 10
+562435 Lucio Ramirez lramirez@fi.uba.ar 4

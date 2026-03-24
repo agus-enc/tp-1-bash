@@ -65,7 +65,7 @@ do
 
 	    5)  echo "Ingresar padron";;
 
-	    6)  echo "saliste"
+	    6)  echo "Chau chau"
             exit;;
     esac
 done
