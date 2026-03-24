@@ -6,13 +6,12 @@
 shopt -s nullglob
 
 # Usando un ciclo for recorre todos los archivos .txt de la carpeta entrada, les copia el contenido a $FILENAME.txt y despues los mueve a procesado.
-# Usa $(pwd) porque se corre desde menu.sh que esta en otro directorio, entonces necesita poner el path completo en vez del relativo
-# También redirige los errores a /dev/null para que no aparezcan en la pantalla cuando se termine el ciclo.
+# Usa $(pwd) porque se corre desde menu.sh que esta en otro directorio, entonces necesita el path completo en vez del relativo.
 while true; do 
     for file in "$(pwd)"/EPNro1/entrada/*.txt; do
         cat "$file" >> "$(pwd)"/EPNro1/salida/"$FILENAME.txt" &&
         mv "$file" "$(pwd)"/EPNro1/procesado/
     done
-    # Pause el proceso por 3 segundos para no saturar la CPU
+    # Pausa el proceso por 3 segundos para no saturar la CPU
     sleep 3
 done
