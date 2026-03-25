@@ -59,7 +59,7 @@ do
 	    4) archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
               echo "Mostrando las primeras 10 mejores notas"
-              sort -n -k4 "$archivo" | head
+              sort -k5 -rn "$archivo" | head
             fi
         ;;
 
