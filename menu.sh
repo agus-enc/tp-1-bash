@@ -13,7 +13,7 @@ if [ "$1" == "-d" ]; then
         fi
 
         # Rescata consolidar.sh y los archivos de texto antes de eliminar todo el entorno.
-        mv EPNro1/consolidar.sh EPNro1/entrada/*.txt "$(pwd)"/ 2>/dev/null
+        mv EPNro1/consolidar.sh EPNro1/{entrada,procesado}/*.txt "$(pwd)"/ 2>/dev/null
         rm -r ./EPNro1 2>/dev/null
         exit 0
 fi
