@@ -47,6 +47,8 @@ do
                 echo "Corriendo proceso en background"
             fi;;
 
+        # Si existe, toma el archivo con los textos procesados y
+        # devuelve el listado ordenado numericamente por la primera columna.
         3)  archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
               echo "Mostrando listado de alumnos por padron:"
@@ -55,14 +57,18 @@ do
               echo "No se encontraron archivos"
             fi
         ;;
-	
+
+        # Si existe, toma el archivo con los textos procesados y
+        # devuelve las filas con las 10 mejores notas (quinta columna).
 	    4) archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
            if [ -f "$archivo" ]; then
-              echo "Mostrando las primeras 10 mejores notas"
+              echo "Mostrando las primeras 10 mejores notas:"
               sort -k5 -rn "$archivo" | head
             fi
         ;;
 
+        # Si existe, toma el archivo con los textos procesados, busca con grep el input del usuario en la primera columna
+        # y devuelve la fila que coincide, si es que hay.
 	    5) archivo="$(pwd)/EPNro1/salida/$FILENAME.txt"
             if [ -f "$archivo" ]; then
                 read -p "Ingrese numero de padron: " padron
